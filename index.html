@@ -12,7 +12,7 @@
     <link href="./css/style.css" rel="stylesheet">
   </head>
 
-<body>
+<body onload="fetchBookmarks()">
 
 <div class="container">
   <div class="header clearfix">
@@ -26,7 +26,7 @@
         <label>Site Name: </label>
         <input type="text" class="form-control" id="siteName" placeholder="Website Name...">
       </div>
-      
+
       <div class="form-group">
         <label>Site URL: </label>
         <input type="text" class="form-control" id="url" placeholder="Website URL...">
