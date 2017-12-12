@@ -41,14 +41,37 @@
 // Function to fetch all the bookmarks from local Storage
 // and display them to the user
 function fetchBookmarks(){
-  //get all the curretn bookmarks and store in a local variable
-  var displayBookmarks = JSON.parse(localStorage.getItem('bookmarks'));
-  // build the bookmarks in the results div
-  var resultsDiv = document.getElementById("bookmarkResults");
-  resultsDiv.innerHTML = '';
+  //if there are no bookmarks
+  if(displayBookmarks === null || displayBookmarks == null){
+    console.log("display bookmarks is null");
+    document.getElementById("bookmarkResults").innerHTML = "Your bookmarks will display here...";
+    return;
+  } else {
+    //get all the current bookmarks and store in a local variable
+    var displayBookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    // // build the bookmarks in the results div
+    var resultsDiv = document.getElementById("bookmarkResults");
+    resultsDiv.innerHTML = '';
 
-  if(displayBookmarks === null) {
-    resultsDiv.innerHTML = 'Bookmarks you type will be displayed here...';
+    // loop through displayBookmarks array
+    // and build them into resultsDiv
+    for(var i=0;i<displayBookmarks.length;i++){
+      // store name and url for each iteration
+      var siteName = displayBookmarks[i].name;
+      var siteUrl = displayBookmarks[i].url;
+      //build a div block through each iteration
+      resultsDiv.innerHTML += '<div class="well">' +
+                              '<h3>' +siteName+
+                              ' <a class="btn btn-default" target="_blank" href="'+siteUrl+'">Visit</a> ' +
+                              ' <a onclick="deleteBookmark(\''+url+'\')"class="btn btn-danger" target="_blank" href="#">Delete</a> '
+                              '</h3>' +
+                              '</div>';
+     }
   }
-
 }
+
+
+// function deleteBookmark(){
+//   // this function will delete a bookmark from local storage
+//   // when the delete button is clicked.
+// }
